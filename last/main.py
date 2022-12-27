@@ -1,18 +1,17 @@
 import json
 from flask import Flask, jsonify, request, render_template
-import psycopg2  # add BD library
+import psycopg2
 app = Flask(__name__)
 data = [{'id': 0, 'name': 'Dave', 'surname': 'McWeber'},
         {'id': 1, 'name': 'Jerry', 'surname': 'Stark'}]
 
 
-conn = psycopg2.connect
-    (
+conn = psycopg2.connect(
     host="localhost",
     database="MyDataBase",
     user="postgres",
-    password="2210",
-    )
+    password="1111",
+)
 TABLE_NAME = "users"
 COLUMNS = ['user_id', 'user_name', 'user_surname']
 cursor = conn.cursor()
@@ -21,7 +20,7 @@ success_message = {'success': True}
 
 @app.errorhandler(404)
 def user_not_found(e):
-    return render_template('user404.html'), 404
+    return render_template('404.html'), 404
 
 
 @app.errorhandler(404)
